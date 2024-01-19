@@ -1,0 +1,3 @@
+/home/elliancarlos/Projects/Pessoal/tcp-login-echo-server/server/CMakeFiles/tcp-echo-server.dir
+/home/elliancarlos/Projects/Pessoal/tcp-login-echo-server/server/CMakeFiles/edit_cache.dir
+/home/elliancarlos/Projects/Pessoal/tcp-login-echo-server/server/CMakeFiles/rebuild_cache.dir

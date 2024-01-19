@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Wextra -Werror -pedantic -g -ggdb "CMakeFiles/tcp-echo-server.dir/checksum.cpp.o" "CMakeFiles/tcp-echo-server.dir/listener.cpp.o" "CMakeFiles/tcp-echo-server.dir/logger.cpp.o" "CMakeFiles/tcp-echo-server.dir/login-server.cpp.o" "CMakeFiles/tcp-echo-server.dir/main.cpp.o" "CMakeFiles/tcp-echo-server.dir/server.cpp.o" -o tcp-echo-server 

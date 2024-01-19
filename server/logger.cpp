@@ -1,26 +1,26 @@
 #include <iostream>
 #include <cstdlib>
-#include <iomanip>
-#include <ctime>
+#include <chrono>
+#include <format>
+#include <string>
 
-static class Logger
+#include "logger.hpp"
+
+void Logger::error(const std::string &errorMessage)
 {
-public:
-  void error(const std::string &errorMessage)
-  {
-    std::cerr << "[ERROR] [" << getTimestamp() << "]" << errorMessage << std::endl;
-  }
+  std::cerr << "[ERROR] [" << getTimestamp() << "]" << errorMessage << std::endl;
+}
 
-  void info(const std::string &errorMessage)
-  {
-    std::cout << "[INFO] [" << getTimestamp() << "]" << errorMessage << std::endl;
-  }
+void Logger::info(const std::string &errorMessage)
+{
+  std::cout << "[INFO] [" << getTimestamp() << "]" << errorMessage << std::endl;
+}
 
-private:
-  std::string getTimestamp()
-  {
-    auto t = std::time(nullptr);
-    auto tm = *std::localtime(&t);
-    return std::put_time(&tm, "%d-%m-%Y %H-%M-%S").str();
-  }
+std::string Logger::getTimestamp()
+{
+  std::time_t now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+
+  char buf[100] = {0};
+  std::strftime(buf, sizeof(buf), "%Y-%m-%d", std::localtime(&now));
+  return buf;
 }

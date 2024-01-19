@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/elliancarlos/Projects/Pessoal/tcp-login-echo-server/client",
+  "command": "/usr/bin/c++  -isystem /usr/include/c++/7  -Wall -Wextra -Werror -pedantic -g -ggdb -std=gnu++17 -o CMakeFiles/tcp-echo-client.dir/main.cpp.o -c /home/elliancarlos/Projects/Pessoal/tcp-login-echo-server/client/main.cpp",
+  "file": "/home/elliancarlos/Projects/Pessoal/tcp-login-echo-server/client/main.cpp",
+  "output": "CMakeFiles/tcp-echo-client.dir/main.cpp.o"
+}
+]

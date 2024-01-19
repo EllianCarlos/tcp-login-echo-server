@@ -1,6 +1,8 @@
 file(GLOB PROJECT_SOURCES
     *.h
+    *.hpp
     */*.h
+    */*.hpp
     *.cpp
     */*.cpp
     )

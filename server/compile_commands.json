@@ -1,0 +1,38 @@
+[
+{
+  "directory": "/home/elliancarlos/Projects/Pessoal/tcp-login-echo-server/server",
+  "command": "/usr/bin/c++  -isystem /usr/include/c++/7  -Wall -Wextra -Werror -pedantic -g -ggdb -std=gnu++17 -o CMakeFiles/tcp-echo-server.dir/checksum.cpp.o -c /home/elliancarlos/Projects/Pessoal/tcp-login-echo-server/server/checksum.cpp",
+  "file": "/home/elliancarlos/Projects/Pessoal/tcp-login-echo-server/server/checksum.cpp",
+  "output": "CMakeFiles/tcp-echo-server.dir/checksum.cpp.o"
+},
+{
+  "directory": "/home/elliancarlos/Projects/Pessoal/tcp-login-echo-server/server",
+  "command": "/usr/bin/c++  -isystem /usr/include/c++/7  -Wall -Wextra -Werror -pedantic -g -ggdb -std=gnu++17 -o CMakeFiles/tcp-echo-server.dir/listener.cpp.o -c /home/elliancarlos/Projects/Pessoal/tcp-login-echo-server/server/listener.cpp",
+  "file": "/home/elliancarlos/Projects/Pessoal/tcp-login-echo-server/server/listener.cpp",
+  "output": "CMakeFiles/tcp-echo-server.dir/listener.cpp.o"
+},
+{
+  "directory": "/home/elliancarlos/Projects/Pessoal/tcp-login-echo-server/server",
+  "command": "/usr/bin/c++  -isystem /usr/include/c++/7  -Wall -Wextra -Werror -pedantic -g -ggdb -std=gnu++17 -o CMakeFiles/tcp-echo-server.dir/logger.cpp.o -c /home/elliancarlos/Projects/Pessoal/tcp-login-echo-server/server/logger.cpp",
+  "file": "/home/elliancarlos/Projects/Pessoal/tcp-login-echo-server/server/logger.cpp",
+  "output": "CMakeFiles/tcp-echo-server.dir/logger.cpp.o"
+},
+{
+  "directory": "/home/elliancarlos/Projects/Pessoal/tcp-login-echo-server/server",
+  "command": "/usr/bin/c++  -isystem /usr/include/c++/7  -Wall -Wextra -Werror -pedantic -g -ggdb -std=gnu++17 -o CMakeFiles/tcp-echo-server.dir/login-server.cpp.o -c /home/elliancarlos/Projects/Pessoal/tcp-login-echo-server/server/login-server.cpp",
+  "file": "/home/elliancarlos/Projects/Pessoal/tcp-login-echo-server/server/login-server.cpp",
+  "output": "CMakeFiles/tcp-echo-server.dir/login-server.cpp.o"
+},
+{
+  "directory": "/home/elliancarlos/Projects/Pessoal/tcp-login-echo-server/server",
+  "command": "/usr/bin/c++  -isystem /usr/include/c++/7  -Wall -Wextra -Werror -pedantic -g -ggdb -std=gnu++17 -o CMakeFiles/tcp-echo-server.dir/main.cpp.o -c /home/elliancarlos/Projects/Pessoal/tcp-login-echo-server/server/main.cpp",
+  "file": "/home/elliancarlos/Projects/Pessoal/tcp-login-echo-server/server/main.cpp",
+  "output": "CMakeFiles/tcp-echo-server.dir/main.cpp.o"
+},
+{
+  "directory": "/home/elliancarlos/Projects/Pessoal/tcp-login-echo-server/server",
+  "command": "/usr/bin/c++  -isystem /usr/include/c++/7  -Wall -Wextra -Werror -pedantic -g -ggdb -std=gnu++17 -o CMakeFiles/tcp-echo-server.dir/server.cpp.o -c /home/elliancarlos/Projects/Pessoal/tcp-login-echo-server/server/server.cpp",
+  "file": "/home/elliancarlos/Projects/Pessoal/tcp-login-echo-server/server/server.cpp",
+  "output": "CMakeFiles/tcp-echo-server.dir/server.cpp.o"
+}
+]

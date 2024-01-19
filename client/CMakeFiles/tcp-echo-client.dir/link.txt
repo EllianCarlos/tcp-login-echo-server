@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Wextra -Werror -pedantic -g -ggdb "CMakeFiles/tcp-echo-client.dir/main.cpp.o" -o tcp-echo-client 

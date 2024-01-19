@@ -7,99 +7,102 @@
 #include <netdb.h>
 #include <type_traits>
 #include <unistd.h>
+#include <string.h>
 
 #include "logger.hpp"
+#include "login-server.hpp"
+#include "listener.hpp"
+#include "server.cpp"
 
-class Listener
+Listener::Listener(int portNum)
 {
-public:
-  Listener(int portNum)
+  mainSocketInt = socket(AF_INET, SOCK_STREAM, 0);
+
+  if (mainSocketInt < 0)
   {
-    listenerStatus = socket(AF_INET, SOCK_STREAM, 0);
-
-    if (listenerStatus < 0)
-    {
-      Logger.error("Socket cannot be created.")
-          exit(0);
-    }
-
-    Logger.info("Socket created.")
-        socketAddress.sin_family = AF_INET;
-    socketAddress.sin_port = htons(portNum);
-    inet_pton(AF_INET, "0.0.0.0", &sockerAddress.sin_addr);
+    Logger::error("Socket cannot be created.");
+    exit(0);
   }
 
-  void bind()
+  Logger::info("Socket created.");
+  mainSocket.sin_family = AF_INET;
+  mainSocket.sin_port = htons(portNum);
+  inet_pton(AF_INET, "0.0.0.0", &mainSocket.sin_addr);
+}
+
+void Listener::bindPort()
+{
+  if (bind(mainSocketInt, (sockaddr *)&mainSocket, sizeof(mainSocket)) < 0)
   {
-    if (bind(listenerStatus, (sockaddr *)&server_addr, sizeof(server_addr)) < 0)
-    {
-      Logger.error("Could not bind to port.");
-      exit(-3);
-    }
-
-    Logger.info("Socket was binded to given address.");
+    Logger::error("Could not bind to port.");
+    exit(-3);
   }
 
-  void accept() {
-    socklen_t client_addr_size = sizeof(client_addr);
-    int sock_client;
+  Logger::info("Socket was binded to given address.");
+}
 
-    if ((sock_client = accept(listenerStatus, (sockaddr*)&client_addr, &client_addr_size)) < 0) {
-      Logger.error("Cannot accept connections.");
-      exit(-5);
-    }
+void Listener::acceptListener()
+{
+  socklen_t client_addr_size = sizeof(clientSocket);
 
-    Logger.info("Can accept connections.");
-  }
-
-  void listen()
+  if ((clientSocketInt = accept(mainSocketInt, (sockaddr *)&clientSocket, &client_addr_size)) < 0)
   {
-    if (listen(listenerStatus, SOMAXCONN) < 0)
+    Logger::error("Cannot accept connections.");
+    exit(-5);
+  }
+
+  Logger::info("Can accept connections.");
+}
+
+void Listener::listenPort()
+{
+  if (listen(mainSocketInt, SOMAXCONN) < 0)
+  {
+    Logger::error("Socket could not listen!");
+    exit(-4);
+  }
+
+  Logger::info("Socket is listening.");
+}
+
+void Listener::closeMain()
+{
+  close(mainSocketInt);
+  Logger::info("Closed main socket.");
+}
+
+void Listener::closeClient()
+{
+  close(clientSocketInt);
+  Logger::info("Closed client socket.");
+}
+
+void Listener::receive(LoginServer &server)
+{
+  char msg_buf[4096];
+  int bytes;
+  while (true)
+  {
+    bytes = recv(clientSocketInt, &msg_buf, 4096, 0);
+    if (bytes == 0)
     {
-      Logger.error("Socket could not listen!");
-      exit(-4);
+      Logger::info("Client is not connected.");
+      break;
     }
-
-    Logger.info("Socket is listening.");
-  }
-
-  void closeMain() {
-    close(listenerStatus);
-    Logger.info("Closed main socket.")
-  }
-
-  void closeClient() {
-    close(sockStatus);
-    Logger.info("Closed client socket.")
-  }
-
-  string receive() {
-    char msg_buf[4096];
-    int bytes;
-    while (true) {
-      bytes = recv(sockStatus, &msg_buf, 4096, 0);
-      if (bytes == 0) {
-	Logger.info("Client is not connected.");
-	break;
+    else if (bytes < 0)
+    {
+      Logger::error("Something went wrong.");
+      break;
+    }
+    else
+    {
+      Logger::info("Received message from client");
+      if (send(clientSocketInt, &msg_buf, bytes, 0) < 0)
+      {
+        Logger::error("Message could not be sent.");
+        break;
       }
-      else if (bytes < 0) {
-	Logger.error("Something went wrong.");
-	break;
-      }
-      else {
-	Logger.info("received message from client");
-	if (send(sockStatus, &msg_buf, bytes, 0) < 0) {
-	  Logger.error("Message could not be sent.");
-	  break;
-	}
-	return std::string(msg_buf, 0, bytes);
-      }
-    } 
+      server.process(std::string(msg_buf, 0, bytes));
+    }
   }
-
-private:
-  int listenerStatus;
-  sockaddr_in socketAddress;
-  int sockStatus;
-  sockaddr_in client;
 }

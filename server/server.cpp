@@ -1,21 +1,10 @@
-#include <iostream>
-#include <cstdlib>
-#include <netinet/in.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <arpa/inet.h>
-#include <netdb.h>
-#include <type_traits>
-#include <unistd.h>
+#ifndef __ISERVER
+#define __ISERVER
+#include <string>
 
-
-class Server {
+class iServer {
 public:
-  Server(int portNum) {
-    listener =  Listener(portNum);
-
-
-  }
-private:
-}
-
+    virtual ~iServer() {};
+    virtual void process(std::string requestMessage) const = 0;
+};
+#endif
